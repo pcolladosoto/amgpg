@@ -17,13 +17,13 @@ LDDIRS = $(addprefix -L, /usr/local/Cellar/zlib/1.2.12/lib /usr/local/Cellar/bzi
 LDDEPS = $(addprefix -l, rnp botan-2 z bz2 json-c)
 LDFLAGS = $(LDDIRS) $(LDDEPS)
 
-PROGS = rnp_test
-TRASH = *.o
+PROGS = rnp_sample
+TRASH = *.o *.asc
 
 all: $(PROGS)
 
-rnp_test: test.o
-	$(CC) -o $@ $< $(LDFLAGS)
+rnp_sample: main.o keymgmt.o encrypt.o
+	$(CC) -o $@ $^ $(LDFLAGS)
 
 %.o: %.c
 	$(CC) -c -o $@ $< $(CFLAGS) $(INCDIRS) $(DBGFLAGS)
