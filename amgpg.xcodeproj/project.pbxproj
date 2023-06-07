@@ -18,6 +18,7 @@
 		EFBDF33228B56926005ECBF3 /* MessageSecurityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFBDF33128B56926005ECBF3 /* MessageSecurityViewController.xib */; };
 		EFBDF33728B56927005ECBF3 /* amgpgMailExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EFBDF32928B56926005ECBF3 /* amgpgMailExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		EFBDF33F28B584F6005ECBF3 /* foo.c in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF33E28B584F6005ECBF3 /* foo.c */; };
+		EFFFB2772A31201C006C8237 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EFFFB2762A31201C006C8237 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,13 +46,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		EF01A2B628B6422D006E3CC3 /* librnp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librnp.a; path = ../../../../usr/local/Cellar/rnp/0.15.2/lib/librnp.a; sourceTree = "<group>"; };
-		EF01A2B828B66ED2006E3CC3 /* libbz2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbz2.a; path = ../../../../usr/local/Cellar/bzip2/1.0.8/lib/libbz2.a; sourceTree = "<group>"; };
-		EF01A2BA28B66F15006E3CC3 /* libbotan-2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libbotan-2.a"; path = "../../../../usr/local/Cellar/botan/2.19.2/lib/libbotan-2.a"; sourceTree = "<group>"; };
+		EF01A2B628B6422D006E3CC3 /* librnp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librnp.a; path = /usr/local/Cellar/rnp/0.15.2/lib/librnp.a; sourceTree = "<absolute>"; };
+		EF01A2B828B66ED2006E3CC3 /* libbz2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbz2.a; path = /usr/local/Cellar/bzip2/1.0.8/lib/libbz2.a; sourceTree = "<absolute>"; };
+		EF01A2BA28B66F15006E3CC3 /* libbotan-2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libbotan-2.a"; path = "/usr/local/Cellar/botan2/2.19.3/lib/libbotan-2.a"; sourceTree = "<absolute>"; };
 		EF01A2BC28B671AF006E3CC3 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "../../../../usr/lib/libstdc++.6.dylib"; sourceTree = "<group>"; };
 		EF01A2BE28B7627F006E3CC3 /* fii.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fii.cpp; sourceTree = "<group>"; };
 		EF01A2BF28B7627F006E3CC3 /* fii.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fii.hpp; sourceTree = "<group>"; };
-		EF01A2C128B765B0006E3CC3 /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = ../../../../usr/local/Cellar/zlib/1.2.12/lib/libz.a; sourceTree = "<group>"; };
+		EF01A2C128B765B0006E3CC3 /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = /usr/local/Cellar/zlib/1.2.13/lib/libz.a; sourceTree = "<absolute>"; };
 		EFBDF31328B56847005ECBF3 /* amgpg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = amgpg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFBDF31628B56847005ECBF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFBDF31828B56847005ECBF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,9 +69,9 @@
 		EFBDF33C28B584F6005ECBF3 /* amgpgMailExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "amgpgMailExtension-Bridging-Header.h"; sourceTree = "<group>"; };
 		EFBDF33D28B584F6005ECBF3 /* foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = foo.h; sourceTree = "<group>"; };
 		EFBDF33E28B584F6005ECBF3 /* foo.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = foo.c; sourceTree = "<group>"; };
-		EFBDF34128B58B0C005ECBF3 /* libgpgme.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgpgme.a; path = ../../../../usr/local/Cellar/gpgme/1.18.0/lib/libgpgme.a; sourceTree = "<group>"; };
-		EFBDF34328B58B1E005ECBF3 /* libassuan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libassuan.a; path = ../../../../usr/local/Cellar/libassuan/2.5.5/lib/libassuan.a; sourceTree = "<group>"; };
-		EFBDF34528B58B2C005ECBF3 /* libgpg-error.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgpg-error.a"; path = "../../../../usr/local/Cellar/libgpg-error/1.45/lib/libgpg-error.a"; sourceTree = "<group>"; };
+		EFBDF34328B58B1E005ECBF3 /* libassuan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libassuan.a; path = ../../../../../usr/local/Cellar/libassuan/2.5.5/lib/libassuan.a; sourceTree = "<group>"; };
+		EFBDF34528B58B2C005ECBF3 /* libgpg-error.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgpg-error.a"; path = "../../../../../usr/local/Cellar/libgpg-error/1.47/lib/libgpg-error.a"; sourceTree = "<group>"; };
+		EFFFB2762A31201C006C8237 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +95,7 @@
 		EFBDF30A28B56847005ECBF3 = {
 			isa = PBXGroup;
 			children = (
+				EFFFB2762A31201C006C8237 /* README.md */,
 				EFBDF31528B56847005ECBF3 /* amgpgProject */,
 				EFBDF32A28B56926005ECBF3 /* amgpgMailExtension */,
 				EFBDF31428B56847005ECBF3 /* Products */,
@@ -150,7 +152,6 @@
 				EF01A2B628B6422D006E3CC3 /* librnp.a */,
 				EFBDF34528B58B2C005ECBF3 /* libgpg-error.a */,
 				EFBDF34328B58B1E005ECBF3 /* libassuan.a */,
-				EFBDF34128B58B0C005ECBF3 /* libgpgme.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -237,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFFFB2772A31201C006C8237 /* README.md in Resources */,
 				EFBDF31B28B56848005ECBF3 /* Assets.xcassets in Resources */,
 				EFBDF31E28B56848005ECBF3 /* Main.storyboard in Resources */,
 			);
