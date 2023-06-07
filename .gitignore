@@ -1,0 +1,26 @@
+# Ignore hidden files except the .gitignore
+.*
+!.gitignore
+
+# Ignore text files
+*.txt
+
+# Ignore potentially rubbish Xcode artefacts
+xcuserdata/
+
+# Ignore tests of any kind for now
+*test
+
+# Ignore temporary and scratch files
+foo*
+
+# Ignore keyrings and key dumps
+*.pgp
+*.asc
+keyrings/
+
+# Ignore object files
+*.o
+
+# Ignore executable files
+*.ex

@@ -22,7 +22,7 @@ TRASH = *.o *.asc
 
 all: $(PROGS)
 
-rnp_sample: main.o keymgmt.o encrypt.o
+rnp_sample.ex: main.o keymgmt.o encrypt.o
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 %.o: %.c

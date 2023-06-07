@@ -1,0 +1,616 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EF01A2C328B767E3006E3CC3 /* fii.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF01A2BE28B7627F006E3CC3 /* fii.cpp */; };
+		EFBDF31728B56847005ECBF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF31628B56847005ECBF3 /* AppDelegate.swift */; };
+		EFBDF31928B56847005ECBF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF31828B56847005ECBF3 /* ViewController.swift */; };
+		EFBDF31B28B56848005ECBF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFBDF31A28B56848005ECBF3 /* Assets.xcassets */; };
+		EFBDF31E28B56848005ECBF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFBDF31C28B56848005ECBF3 /* Main.storyboard */; };
+		EFBDF32C28B56926005ECBF3 /* MailExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF32B28B56926005ECBF3 /* MailExtension.swift */; };
+		EFBDF32E28B56926005ECBF3 /* MessageSecurityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF32D28B56926005ECBF3 /* MessageSecurityHandler.swift */; };
+		EFBDF33028B56926005ECBF3 /* MessageSecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF32F28B56926005ECBF3 /* MessageSecurityViewController.swift */; };
+		EFBDF33228B56926005ECBF3 /* MessageSecurityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFBDF33128B56926005ECBF3 /* MessageSecurityViewController.xib */; };
+		EFBDF33728B56927005ECBF3 /* amgpgMailExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EFBDF32928B56926005ECBF3 /* amgpgMailExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EFBDF33F28B584F6005ECBF3 /* foo.c in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF33E28B584F6005ECBF3 /* foo.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EFBDF33528B56927005ECBF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EFBDF30B28B56847005ECBF3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EFBDF32828B56926005ECBF3;
+			remoteInfo = sampleMailExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EFBDF33B28B56927005ECBF3 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				EFBDF33728B56927005ECBF3 /* amgpgMailExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EF01A2B628B6422D006E3CC3 /* librnp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librnp.a; path = ../../../../usr/local/Cellar/rnp/0.15.2/lib/librnp.a; sourceTree = "<group>"; };
+		EF01A2B828B66ED2006E3CC3 /* libbz2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbz2.a; path = ../../../../usr/local/Cellar/bzip2/1.0.8/lib/libbz2.a; sourceTree = "<group>"; };
+		EF01A2BA28B66F15006E3CC3 /* libbotan-2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libbotan-2.a"; path = "../../../../usr/local/Cellar/botan/2.19.2/lib/libbotan-2.a"; sourceTree = "<group>"; };
+		EF01A2BC28B671AF006E3CC3 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "../../../../usr/lib/libstdc++.6.dylib"; sourceTree = "<group>"; };
+		EF01A2BE28B7627F006E3CC3 /* fii.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fii.cpp; sourceTree = "<group>"; };
+		EF01A2BF28B7627F006E3CC3 /* fii.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fii.hpp; sourceTree = "<group>"; };
+		EF01A2C128B765B0006E3CC3 /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = ../../../../usr/local/Cellar/zlib/1.2.12/lib/libz.a; sourceTree = "<group>"; };
+		EFBDF31328B56847005ECBF3 /* amgpg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = amgpg.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFBDF31628B56847005ECBF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EFBDF31828B56847005ECBF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EFBDF31A28B56848005ECBF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EFBDF31D28B56848005ECBF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EFBDF31F28B56848005ECBF3 /* amgpgProj.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = amgpgProj.entitlements; sourceTree = "<group>"; };
+		EFBDF32928B56926005ECBF3 /* amgpgMailExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = amgpgMailExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFBDF32B28B56926005ECBF3 /* MailExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailExtension.swift; sourceTree = "<group>"; };
+		EFBDF32D28B56926005ECBF3 /* MessageSecurityHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSecurityHandler.swift; sourceTree = "<group>"; };
+		EFBDF32F28B56926005ECBF3 /* MessageSecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSecurityViewController.swift; sourceTree = "<group>"; };
+		EFBDF33128B56926005ECBF3 /* MessageSecurityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageSecurityViewController.xib; sourceTree = "<group>"; };
+		EFBDF33328B56927005ECBF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EFBDF33428B56927005ECBF3 /* amgpgMailExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = amgpgMailExtension.entitlements; sourceTree = "<group>"; };
+		EFBDF33C28B584F6005ECBF3 /* amgpgMailExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "amgpgMailExtension-Bridging-Header.h"; sourceTree = "<group>"; };
+		EFBDF33D28B584F6005ECBF3 /* foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = foo.h; sourceTree = "<group>"; };
+		EFBDF33E28B584F6005ECBF3 /* foo.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = foo.c; sourceTree = "<group>"; };
+		EFBDF34128B58B0C005ECBF3 /* libgpgme.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgpgme.a; path = ../../../../usr/local/Cellar/gpgme/1.18.0/lib/libgpgme.a; sourceTree = "<group>"; };
+		EFBDF34328B58B1E005ECBF3 /* libassuan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libassuan.a; path = ../../../../usr/local/Cellar/libassuan/2.5.5/lib/libassuan.a; sourceTree = "<group>"; };
+		EFBDF34528B58B2C005ECBF3 /* libgpg-error.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgpg-error.a"; path = "../../../../usr/local/Cellar/libgpg-error/1.45/lib/libgpg-error.a"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EFBDF31028B56847005ECBF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFBDF32628B56926005ECBF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EFBDF30A28B56847005ECBF3 = {
+			isa = PBXGroup;
+			children = (
+				EFBDF31528B56847005ECBF3 /* amgpgProject */,
+				EFBDF32A28B56926005ECBF3 /* amgpgMailExtension */,
+				EFBDF31428B56847005ECBF3 /* Products */,
+				EFBDF34028B58B0B005ECBF3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		EFBDF31428B56847005ECBF3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EFBDF31328B56847005ECBF3 /* amgpg.app */,
+				EFBDF32928B56926005ECBF3 /* amgpgMailExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EFBDF31528B56847005ECBF3 /* amgpgProject */ = {
+			isa = PBXGroup;
+			children = (
+				EFBDF31628B56847005ECBF3 /* AppDelegate.swift */,
+				EFBDF31828B56847005ECBF3 /* ViewController.swift */,
+				EFBDF31A28B56848005ECBF3 /* Assets.xcassets */,
+				EFBDF31C28B56848005ECBF3 /* Main.storyboard */,
+				EFBDF31F28B56848005ECBF3 /* amgpgProj.entitlements */,
+			);
+			path = amgpgProject;
+			sourceTree = "<group>";
+		};
+		EFBDF32A28B56926005ECBF3 /* amgpgMailExtension */ = {
+			isa = PBXGroup;
+			children = (
+				EFBDF32B28B56926005ECBF3 /* MailExtension.swift */,
+				EFBDF32D28B56926005ECBF3 /* MessageSecurityHandler.swift */,
+				EF01A2BE28B7627F006E3CC3 /* fii.cpp */,
+				EF01A2BF28B7627F006E3CC3 /* fii.hpp */,
+				EFBDF32F28B56926005ECBF3 /* MessageSecurityViewController.swift */,
+				EFBDF33128B56926005ECBF3 /* MessageSecurityViewController.xib */,
+				EFBDF33328B56927005ECBF3 /* Info.plist */,
+				EFBDF33428B56927005ECBF3 /* amgpgMailExtension.entitlements */,
+				EFBDF33D28B584F6005ECBF3 /* foo.h */,
+				EFBDF33E28B584F6005ECBF3 /* foo.c */,
+				EFBDF33C28B584F6005ECBF3 /* amgpgMailExtension-Bridging-Header.h */,
+			);
+			path = amgpgMailExtension;
+			sourceTree = "<group>";
+		};
+		EFBDF34028B58B0B005ECBF3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF01A2C128B765B0006E3CC3 /* libz.a */,
+				EF01A2BC28B671AF006E3CC3 /* libstdc++.6.dylib */,
+				EF01A2BA28B66F15006E3CC3 /* libbotan-2.a */,
+				EF01A2B828B66ED2006E3CC3 /* libbz2.a */,
+				EF01A2B628B6422D006E3CC3 /* librnp.a */,
+				EFBDF34528B58B2C005ECBF3 /* libgpg-error.a */,
+				EFBDF34328B58B1E005ECBF3 /* libassuan.a */,
+				EFBDF34128B58B0C005ECBF3 /* libgpgme.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EFBDF31228B56847005ECBF3 /* amgpg */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFBDF32228B56848005ECBF3 /* Build configuration list for PBXNativeTarget "amgpg" */;
+			buildPhases = (
+				EFBDF30F28B56847005ECBF3 /* Sources */,
+				EFBDF31028B56847005ECBF3 /* Frameworks */,
+				EFBDF31128B56847005ECBF3 /* Resources */,
+				EFBDF33B28B56927005ECBF3 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EFBDF33628B56927005ECBF3 /* PBXTargetDependency */,
+			);
+			name = amgpg;
+			productName = sampleProj;
+			productReference = EFBDF31328B56847005ECBF3 /* amgpg.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EFBDF32828B56926005ECBF3 /* amgpgMailExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EFBDF33828B56927005ECBF3 /* Build configuration list for PBXNativeTarget "amgpgMailExtension" */;
+			buildPhases = (
+				EFBDF32528B56926005ECBF3 /* Sources */,
+				EFBDF32628B56926005ECBF3 /* Frameworks */,
+				EFBDF32728B56926005ECBF3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = amgpgMailExtension;
+			productName = sampleMailExtension;
+			productReference = EFBDF32928B56926005ECBF3 /* amgpgMailExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EFBDF30B28B56847005ECBF3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					EFBDF31228B56847005ECBF3 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					EFBDF32828B56926005ECBF3 = {
+						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
+					};
+				};
+			};
+			buildConfigurationList = EFBDF30E28B56847005ECBF3 /* Build configuration list for PBXProject "amgpg" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EFBDF30A28B56847005ECBF3;
+			productRefGroup = EFBDF31428B56847005ECBF3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EFBDF31228B56847005ECBF3 /* amgpg */,
+				EFBDF32828B56926005ECBF3 /* amgpgMailExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EFBDF31128B56847005ECBF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFBDF31B28B56848005ECBF3 /* Assets.xcassets in Resources */,
+				EFBDF31E28B56848005ECBF3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFBDF32728B56926005ECBF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFBDF33228B56926005ECBF3 /* MessageSecurityViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EFBDF30F28B56847005ECBF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFBDF31928B56847005ECBF3 /* ViewController.swift in Sources */,
+				EFBDF31728B56847005ECBF3 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFBDF32528B56926005ECBF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF01A2C328B767E3006E3CC3 /* fii.cpp in Sources */,
+				EFBDF32E28B56926005ECBF3 /* MessageSecurityHandler.swift in Sources */,
+				EFBDF32C28B56926005ECBF3 /* MailExtension.swift in Sources */,
+				EFBDF33F28B584F6005ECBF3 /* foo.c in Sources */,
+				EFBDF33028B56926005ECBF3 /* MessageSecurityViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EFBDF33628B56927005ECBF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EFBDF32828B56926005ECBF3 /* amgpgMailExtension */;
+			targetProxy = EFBDF33528B56927005ECBF3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EFBDF31C28B56848005ECBF3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EFBDF31D28B56848005ECBF3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EFBDF32028B56848005ECBF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EFBDF32128B56848005ECBF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		EFBDF32328B56848005ECBF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = amgpgProject/amgpgProj.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WCRFZRDU78;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pcolladosoto.amgpgProj;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		EFBDF32428B56848005ECBF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = amgpgProject/amgpgProj.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WCRFZRDU78;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pcolladosoto.amgpgProj;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		EFBDF33928B56927005ECBF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = amgpgMailExtension/amgpgMailExtension.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WCRFZRDU78;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_LINK_WITH_DYNAMIC_LIBRARIES = NO;
+				GCC_USE_STANDARD_INCLUDE_SEARCHING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/rnp/0.15.2/include,
+					/usr/local/Cellar/zlib/1.2.12/include,
+					/usr/local/Cellar/bzip2/1.0.8/include,
+					"/usr/local/Cellar/json-c/0.16/include",
+					/usr/local/Cellar/zlib/1.2.13/include,
+				);
+				INFOPLIST_FILE = amgpgMailExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = amgpgMailExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/rnp/0.15.2/lib,
+					/usr/local/Cellar/botan/2.19.2/lib,
+					/usr/local/Cellar/zlib/1.2.12/lib,
+					/usr/local/Cellar/bzip2/1.0.8/lib,
+					"/usr/local/Cellar/json-c/0.16/lib",
+					/usr/local/Cellar/botan2/2.19.3/lib,
+					/usr/local/Cellar/zlib/1.2.13/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					/usr/local/Cellar/rnp/0.15.2/lib/librnp.a,
+					/usr/local/Cellar/bzip2/1.0.8/lib/libbz2.a,
+					"/usr/local/Cellar/json-c/0.16/lib/libjson-c.a",
+					/usr/local/Cellar/zlib/1.2.13/lib/libz.a,
+					"/usr/local/Cellar/botan2/2.19.3/lib/libbotan-2.a",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pcolladosoto.amgpgProj.amgpgMailExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "amgpgMailExtension/amgpgMailExtension-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		EFBDF33A28B56927005ECBF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = amgpgMailExtension/amgpgMailExtension.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WCRFZRDU78;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_LINK_WITH_DYNAMIC_LIBRARIES = NO;
+				GCC_USE_STANDARD_INCLUDE_SEARCHING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/Cellar/rnp/0.15.2/include,
+					/usr/local/Cellar/zlib/1.2.12/include,
+					/usr/local/Cellar/bzip2/1.0.8/include,
+					"/usr/local/Cellar/json-c/0.16/include",
+					/usr/local/Cellar/zlib/1.2.13/include,
+				);
+				INFOPLIST_FILE = amgpgMailExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = amgpgMailExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/rnp/0.15.2/lib,
+					/usr/local/Cellar/botan/2.19.2/lib,
+					/usr/local/Cellar/zlib/1.2.12/lib,
+					/usr/local/Cellar/bzip2/1.0.8/lib,
+					"/usr/local/Cellar/json-c/0.16/lib",
+					/usr/local/Cellar/botan2/2.19.3/lib,
+					/usr/local/Cellar/zlib/1.2.13/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					/usr/local/Cellar/rnp/0.15.2/lib/librnp.a,
+					/usr/local/Cellar/bzip2/1.0.8/lib/libbz2.a,
+					"/usr/local/Cellar/json-c/0.16/lib/libjson-c.a",
+					/usr/local/Cellar/zlib/1.2.13/lib/libz.a,
+					"/usr/local/Cellar/botan2/2.19.3/lib/libbotan-2.a",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pcolladosoto.amgpgProj.amgpgMailExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "amgpgMailExtension/amgpgMailExtension-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EFBDF30E28B56847005ECBF3 /* Build configuration list for PBXProject "amgpg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFBDF32028B56848005ECBF3 /* Debug */,
+				EFBDF32128B56848005ECBF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFBDF32228B56848005ECBF3 /* Build configuration list for PBXNativeTarget "amgpg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFBDF32328B56848005ECBF3 /* Debug */,
+				EFBDF32428B56848005ECBF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EFBDF33828B56927005ECBF3 /* Build configuration list for PBXNativeTarget "amgpgMailExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFBDF33928B56927005ECBF3 /* Debug */,
+				EFBDF33A28B56927005ECBF3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EFBDF30B28B56847005ECBF3 /* Project object */;
+}

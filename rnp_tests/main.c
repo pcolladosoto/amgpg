@@ -14,7 +14,11 @@ int main(int argc, char** argv) {
     		}
 	}
 
-	res = ffi_encrypt(DUMMY_MSG, PUBRING, DUMMY_KEY);
+	encrypted_msg enc_msg = ffi_encrypt(DUMMY_MSG, PUBRING, DUMMY_KEY);
+	fprintf(stdout, "%.*s", (int) enc_msg.enc_message_len, enc_msg.enc_message);
 
-	return res;
+	// Time to free resources
+	rnp_buffer_destroy(enc_msg.enc_message);
+
+	return enc_msg.result;
 }

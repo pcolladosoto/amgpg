@@ -1,6 +1,6 @@
 #include "sample.h"
 
-int ffi_encrypt(const char* message, const char* pubring, const char* userid) {
+encrypted_msg ffi_encrypt(const char* message, const char* pubring, const char* userid) {
     rnp_ffi_t        ffi = NULL;
     rnp_op_encrypt_t encrypt = NULL;
     rnp_key_handle_t key = NULL;
@@ -13,7 +13,7 @@ int ffi_encrypt(const char* message, const char* pubring, const char* userid) {
 
     // Initialize FFI object.
     if (rnp_ffi_create(&ffi, "GPG", "GPG") != RNP_SUCCESS) {
-        return result;
+        return (encrypted_msg) {buf, buf_len, result};
     }
 
     // Load public keyring - we do not need secret for encryption.
@@ -86,12 +86,12 @@ int ffi_encrypt(const char* message, const char* pubring, const char* userid) {
     fprintf(stdout, "Encryption succeeded. Encrypted message written to memory buffer.\n");
 
     // Retrieve memeory buffer
-    if (rnp_output_memory_get_buf(output, &buf, &buf_len, false) != RNP_SUCCESS) {
+    if (rnp_output_memory_get_buf(output, &buf, &buf_len, true) != RNP_SUCCESS) {
 	    fprintf(stderr, "error retrieving the output buffer...\n");
 	    goto finish;
     }
 
-    fprintf(stdout, "%.*s", (int) buf_len, buf);
+    // fprintf(stdout, "%.*s", (int) buf_len, buf);
 
     result = 0;
 finish:
@@ -101,5 +101,6 @@ finish:
     rnp_output_destroy(output);
     rnp_key_handle_destroy(key);
     rnp_ffi_destroy(ffi);
-    return result;
+
+    return (encrypted_msg) {buf, buf_len, result};
 }
