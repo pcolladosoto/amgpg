@@ -60,6 +60,7 @@
 		EF07EB332A3F66ED004D0163 /* librnp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librnp.a; path = "../../../../../usr/local/Cellar/modrnp/HEAD-d81a554/lib/librnp.a"; sourceTree = "<group>"; };
 		EF07EB362A3F6705004D0163 /* libjson-c.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libjson-c.a"; path = "../../../../../usr/local/Cellar/json-c/0.16/lib/libjson-c.a"; sourceTree = "<group>"; };
 		EF07EB3A2A3F677B004D0163 /* libbotan-3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libbotan-3.a"; path = "../../../../../usr/local/Cellar/botan/3.0.0/lib/libbotan-3.a"; sourceTree = "<group>"; };
+		EF07EB3C2A3F6837004D0163 /* bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
 		EFBDF31328B56847005ECBF3 /* amgpg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = amgpg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFBDF31628B56847005ECBF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFBDF31828B56847005ECBF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,7 +74,6 @@
 		EFBDF33128B56926005ECBF3 /* MessageSecurityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageSecurityViewController.xib; sourceTree = "<group>"; };
 		EFBDF33328B56927005ECBF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFBDF33428B56927005ECBF3 /* amgpgMailExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = amgpgMailExtension.entitlements; sourceTree = "<group>"; };
-		EFBDF33C28B584F6005ECBF3 /* amgpgMailExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "amgpgMailExtension-Bridging-Header.h"; sourceTree = "<group>"; };
 		EFBDF33D28B584F6005ECBF3 /* foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = foo.h; sourceTree = "<group>"; };
 		EFBDF33E28B584F6005ECBF3 /* foo.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = foo.c; sourceTree = "<group>"; };
 		EFBDF34328B58B1E005ECBF3 /* libassuan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libassuan.a; path = ../../../../../usr/local/Cellar/libassuan/2.5.5/lib/libassuan.a; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 				EFBDF33428B56927005ECBF3 /* amgpgMailExtension.entitlements */,
 				EFBDF33D28B584F6005ECBF3 /* foo.h */,
 				EFBDF33E28B584F6005ECBF3 /* foo.c */,
-				EFBDF33C28B584F6005ECBF3 /* amgpgMailExtension-Bridging-Header.h */,
+				EF07EB3C2A3F6837004D0163 /* bridge.h */,
 			);
 			path = amgpgMailExtension;
 			sourceTree = "<group>";
@@ -532,8 +532,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "amgpgMailExtension/amgpgMailExtension-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = amgpgMailExtension/bridge.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -589,7 +590,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "amgpgMailExtension/amgpgMailExtension-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = amgpgMailExtension/bridge.h;
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
