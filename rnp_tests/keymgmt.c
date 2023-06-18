@@ -1,245 +1,155 @@
-#include "sample.h"
+#include "rnp_tests.h"
 
-/* RSA key JSON description. 31536000 = 1 year expiration, 15768000 = half year */
-const char *RSA_KEY_DESC = "{\
-    'primary': {\
-        'type': 'RSA',\
-        'length': 2048,\
-        'userid': 'sampleKey',\
-        'expiration': 31536000,\
-        'usage': ['sign'],\
-        'protection': {\
-            'cipher': 'AES256',\
-            'hash': 'SHA256'\
-        }\
-    },\
-    'sub': {\
-        'type': 'RSA',\
-        'length': 2048,\
-        'expiration': 15768000,\
-        'usage': ['encrypt'],\
-        'protection': {\
-            'cipher': 'AES256',\
-            'hash': 'SHA256'\
-        }\
-    }\
-}";
+void amgpg_print_n_keys(rnp_ffi_t ffi) {
+	size_t npub, nsec;
+	rnp_get_public_key_count(ffi, &npub);
+	rnp_get_secret_key_count(ffi, &nsec);
+	fprintf(stderr, "loaded %lu public keys and %lu private keys.\n", npub, nsec);
+}
+
+rnp_result_t amgpg_load_key_by_email(rnp_ffi_t ffi, const char* email, rnp_key_handle_t* key) {
+	rnp_identifier_iterator_t it = NULL;
+	const char* id = NULL;
+	int ret;
+
+	if (rnp_identifier_iterator_create(ffi, &it, "userid") != RNP_SUCCESS)
+		return false;
+
+	while ((ret = rnp_identifier_iterator_next(it, &id)) == RNP_SUCCESS) {
+		if (!id)
+			break;
+
+		if (strstr(id, email)) {
+			if ((ret = rnp_locate_key(ffi, "userid", id, key)) != RNP_SUCCESS)
+				goto finish;
+		}
+	}
+	if (!key)
+		ret = RNP_ERROR_KEY_NOT_FOUND;
+finish:
+	rnp_identifier_iterator_destroy(it);
+	return ret;
+}
 
 // We'll just pass a mock password whenever we are prompted for one.
-	// We'll likely read it from stdin after stuff looks better!
-static bool example_pass_provider(rnp_ffi_t ffi, void* app_ctx, rnp_key_handle_t key, const char* pgp_context,
-	char buf[], size_t buf_len) {
-    if (strcmp(pgp_context, "protect")) {
-        return false;
-    }
+// We'll likely read it from stdin after stuff looks better!
+// static bool example_pass_provider(rnp_ffi_t ffi, void* app_ctx, rnp_key_handle_t key, const char* pgp_context,
+// 	char buf[], size_t buf_len) {
+// 	if (strcmp(pgp_context, "protect")) {
+// 		return false;
+// 	}
 
-    strncpy(buf, "password", buf_len);
-    return true;
+// 	strncpy(buf, "password", buf_len);
+// 	return true;
+// }
+
+rnp_result_t amgpg_print_keys(rnp_ffi_t ffi, const char* id_type, bool secret) {
+	rnp_identifier_iterator_t it = NULL;
+	const char* id = NULL;
+	int ret;
+
+	if (rnp_identifier_iterator_create(ffi, &it, id_type) != RNP_SUCCESS)
+		return false;
+
+	while ((ret = rnp_identifier_iterator_next(it, &id)) == RNP_SUCCESS) {
+		if (!id)
+			break;
+
+		fprintf(stderr, "printing key identified by %s: '%s'\n", id_type, id);
+
+		if (!amgpg_print_key(ffi, id_type, id, secret))
+			break;
+	}
+
+	return rnp_identifier_iterator_destroy(it);
 }
 
-// This simple helper function just prints armored key, searched by userid, to stderr.
-static bool ffi_print_key(rnp_ffi_t ffi, const char *uid, bool secret) {
-    rnp_output_t     keydata = NULL;
-    rnp_key_handle_t key = NULL;
-    uint32_t         flags = RNP_KEY_EXPORT_ARMORED | RNP_KEY_EXPORT_SUBKEYS;
-    uint8_t *        buf = NULL;
-    size_t           buf_len = 0;
-    bool             result = false;
+rnp_result_t amgpg_print_key(rnp_ffi_t ffi, const char* id_type, const char *id, bool secret) {
+	rnp_output_t     keydata = NULL;
+	rnp_key_handle_t key = NULL;
+	uint32_t         flags = RNP_KEY_EXPORT_ARMORED | RNP_KEY_EXPORT_SUBKEYS;
+	uint8_t *        buf = NULL;
+	size_t           buf_len = 0;
+	rnp_result_t     ret = RNP_ERROR_GENERIC;
 
-    // You may search for the key via userid, keyid, fingerprint, grip.
-    if (rnp_locate_key(ffi, "userid", uid, &key) != RNP_SUCCESS) {
-        return false;
-    }
+	// You may search for the key via userid, keyid, fingerprint, grip.
+	if ((ret = rnp_locate_key(ffi, id_type, id, &key)) != RNP_SUCCESS)
+		return ret;
 
-    if (!key) {
-        return false;
-    }
+	if (!key)
+		return RNP_ERROR_KEY_NOT_FOUND;
 
-    // Create in-memory output structure to later use buffer.
-    if (rnp_output_to_memory(&keydata, 0) != RNP_SUCCESS) {
-        goto finish;
-    }
+	// Create in-memory output structure to later use buffer.
+	if ((ret = rnp_output_to_memory(&keydata, 0)) != RNP_SUCCESS)
+		goto finish;
 
-    flags = flags | (secret ? RNP_KEY_EXPORT_SECRET : RNP_KEY_EXPORT_PUBLIC);
-    if (rnp_key_export(key, keydata, flags) != RNP_SUCCESS) {
-        goto finish;
-    }
+	flags = flags | (secret ? RNP_KEY_EXPORT_SECRET : RNP_KEY_EXPORT_PUBLIC);
+	if ((ret = rnp_key_export(key, keydata, flags)) != RNP_SUCCESS) {
+		fprintf(stderr, "error exporting the key: %0x\n", ret);
+		if (ret == RNP_ERROR_NO_SUITABLE_KEY || ret == RNP_ERROR_NOT_IMPLEMENTED)
+			ret = RNP_SUCCESS;
+		goto finish;
+	}
 
-    // Get key's contents from the output structure.
-    if (rnp_output_memory_get_buf(keydata, &buf, &buf_len, false) != RNP_SUCCESS) {
-        goto finish;
-    }
-    fprintf(stderr, "%.*s", (int) buf_len, buf);
+	// Get key's contents from the output structure.
+	if ((ret = rnp_output_memory_get_buf(keydata, &buf, &buf_len, false)) != RNP_SUCCESS)
+		goto finish;
 
-    result = true;
+	fprintf(stderr, "%.*s", (int) buf_len, buf);
+
 finish:
-    rnp_key_handle_destroy(key);
-    rnp_output_destroy(keydata);
-    return result;
+	rnp_key_handle_destroy(key);
+	rnp_output_destroy(keydata);
+	return ret;
 }
 
-static bool ffi_export_key(rnp_ffi_t ffi, const char *uid, bool secret) {
-    rnp_output_t     keyfile = NULL;
-    rnp_key_handle_t key = NULL;
-    uint32_t         flags = RNP_KEY_EXPORT_ARMORED | RNP_KEY_EXPORT_SUBKEYS;
-    char             filename[32] = {0};
-    char *           keyid = NULL;
-    bool             result = false;
+rnp_result_t load_keys(rnp_ffi_t ffi, const char* pubring, const char* secring) {
+	rnp_input_t  keyfile = NULL;
+	rnp_result_t ret;
 
-    /* you may search for the key via userid, keyid, fingerprint, grip */
-    if (rnp_locate_key(ffi, "userid", uid, &key) != RNP_SUCCESS) {
-        return false;
-    }
+	// Load the public keyring.
+	if ((ret = rnp_input_from_path(&keyfile, pubring)) != RNP_SUCCESS)
+		return ret;
 
-    if (!key) {
-        return false;
-    }
+	// Actually, we may use 0 instead of RNP_LOAD_SAVE_PUBLIC_KEYS, to not check key types.
+	if ((ret = rnp_load_keys(ffi, PUBTYPE, keyfile, RNP_LOAD_SAVE_PUBLIC_KEYS)) != RNP_SUCCESS)
+		goto finish;
 
-    /* get key's id and build filename */
-    if (rnp_key_get_keyid(key, &keyid) != RNP_SUCCESS) {
-        goto finish;
-    }
-    snprintf(filename, sizeof(filename), "key-%s-%s.asc", keyid, secret ? "sec" : "pub");
-    rnp_buffer_destroy(keyid);
+	rnp_input_destroy(keyfile);
+	keyfile = NULL;
 
-    /* create file output structure */
-    if (rnp_output_to_path(&keyfile, filename) != RNP_SUCCESS) {
-        goto finish;
-    }
+	if ((ret = rnp_input_from_path(&keyfile, secring)) != RNP_SUCCESS)
+		return ret;
 
-    flags = flags | (secret ? RNP_KEY_EXPORT_SECRET : RNP_KEY_EXPORT_PUBLIC);
-    if (rnp_key_export(key, keyfile, flags) != RNP_SUCCESS) {
-        goto finish;
-    }
+	ret = rnp_load_keys(ffi, SECTYPE, keyfile, RNP_LOAD_SAVE_SECRET_KEYS);
 
-    result = true;
 finish:
-    rnp_key_handle_destroy(key);
-    rnp_output_destroy(keyfile);
-    return result;
+	rnp_input_destroy(keyfile);
+	keyfile = NULL;
+
+	return ret;
 }
 
-// This example generates a single RSA key
-int ffi_generate_keys(char const* pubring, char const* secring) {
-    rnp_ffi_t    ffi = NULL;
-    rnp_output_t keyfile = NULL;
-    char *       key_grips = NULL;
-    int          result = 1;
+rnp_result_t amgpg_output_keys(const char* pubring, const char* secring) {
+	rnp_ffi_t    ffi = NULL;
+	rnp_result_t ret = RNP_ERROR_GENERIC;
 
-    // Initialize FFI object
-    if (rnp_ffi_create(&ffi, "GPG", "GPG") != RNP_SUCCESS) {
-        return result;
-    }
+	// Initialize FFI object
+	if ((ret = rnp_ffi_create(&ffi, PUBTYPE, SECTYPE)) != RNP_SUCCESS)
+		return ret;
 
-    // Set password provider
-    if (rnp_ffi_set_pass_provider(ffi, example_pass_provider, NULL)) {
-        goto finish;
-    }
+	if ((ret = load_keys(ffi, pubring, secring)) != RNP_SUCCESS)
+		goto finish;
 
-    // Generate RSA keypair
-    if (rnp_generate_key_json(ffi, RSA_KEY_DESC, &key_grips) != RNP_SUCCESS) {
-        fprintf(stderr, "failed to generate rsa key\n");
-        goto finish;
-    }
+	amgpg_print_n_keys(ffi);
 
-    fprintf(stderr, "Generated RSA key/subkey:\n%s\n", key_grips);
+	fprintf(stderr, "printing public keys...\n");
+	amgpg_print_keys(ffi, "userid", false);
 
-    // We need to cleanup after ourselves!
-    rnp_buffer_destroy(key_grips);
-    key_grips = NULL;
+	fprintf(stderr, "printing secret keys...\n");
+	amgpg_print_keys(ffi, "userid", true);
 
-    // We'll write the generated key to a file on disk.
-    	// This instantiates an object representing that
-	// file on disk...
-    if (rnp_output_to_path(&keyfile, pubring) != RNP_SUCCESS) {
-        fprintf(stderr, "failed to initialize %s writing.\n", pubring);
-        goto finish;
-    }
-
-    // This will actually write the keys to disk.
-    if (rnp_save_keys(ffi, "GPG", keyfile, RNP_LOAD_SAVE_PUBLIC_KEYS) != RNP_SUCCESS) {
-        fprintf(stderr, "failed to save pubring\n");
-        goto finish;
-    }
-
-    // Again, we're responsible for cleaning up any objects.
-    rnp_output_destroy(keyfile);
-    keyfile = NULL;
-
-    // Create file output object and save secret keyring with generated keys.
-    if (rnp_output_to_path(&keyfile, secring) != RNP_SUCCESS) {
-        fprintf(stderr, "failed to initialize %s writing\n", secring);
-        goto finish;
-    }
-
-    if (rnp_save_keys(ffi, "GPG", keyfile, RNP_LOAD_SAVE_SECRET_KEYS) != RNP_SUCCESS) {
-        fprintf(stderr, "failed to save secring\n");
-        goto finish;
-    }
-
-    rnp_output_destroy(keyfile);
-    keyfile = NULL;
-
-    // Signal everything went well to the caller.
-    result = 0;
 finish:
-    rnp_buffer_destroy(key_grips);
-    rnp_output_destroy(keyfile);
-    rnp_ffi_destroy(ffi);
-    return result;
-}
-
-int ffi_output_keys(char const* pubring, char const* secring) {
-    rnp_ffi_t   ffi = NULL;
-    rnp_input_t keyfile = NULL;
-    int         result = 2;
-
-    // Initialize FFI object
-    if (rnp_ffi_create(&ffi, "GPG", "GPG") != RNP_SUCCESS) {
-        return result;
-    }
-
-    // Load the publick keyring..
-    if (rnp_input_from_path(&keyfile, pubring) != RNP_SUCCESS) {
-        fprintf(stderr, "failed to open %s\n", pubring);
-        goto finish;
-    }
-
-    // Actually, we may use 0 instead of RNP_LOAD_SAVE_PUBLIC_KEYS, to not check key types.
-    if (rnp_load_keys(ffi, "GPG", keyfile, RNP_LOAD_SAVE_PUBLIC_KEYS) != RNP_SUCCESS) {
-        fprintf(stderr, "failed to read %s\n", pubring);
-        goto finish;
-    }
-    rnp_input_destroy(keyfile);
-    keyfile = NULL;
-
-    if (rnp_input_from_path(&keyfile, secring) != RNP_SUCCESS) {
-        fprintf(stderr, "failed to open %s\n", secring);
-        goto finish;
-    }
-
-    if (rnp_load_keys(ffi, "GPG", keyfile, RNP_LOAD_SAVE_SECRET_KEYS) != RNP_SUCCESS) {
-        fprintf(stderr, "failed to read %s\n", secring);
-        goto finish;
-    }
-    rnp_input_destroy(keyfile);
-    keyfile = NULL;
-
-    // Print armored keys to the stderr.
-    if (!ffi_print_key(ffi, "sampleKey", false) || !ffi_print_key(ffi, "sampleKey", true)) {
-        fprintf(stderr, "failed to print armored key(s)\n");
-        goto finish;
-    }
-
-    // Write armored keys to the files, named key-<keyid>-pub.asc/named key-<keyid>-sec.asc.
-    // if (!ffi_export_key(ffi, "sampleKey", false) || !ffi_export_key(ffi, "sampleKey", true)) {
-    //    fprintf(stderr, "failed to write armored key(s) to file\n");
-    //    goto finish;
-    // }
-
-    result = 0;
-finish:
-    rnp_input_destroy(keyfile);
-    rnp_ffi_destroy(ffi);
-    return result;
+	rnp_ffi_destroy(ffi);
+	return ret;
 }
