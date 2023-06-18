@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EF01A2C328B767E3006E3CC3 /* fii.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF01A2BE28B7627F006E3CC3 /* fii.cpp */; };
+		EF07EB342A3F66ED004D0163 /* libsexp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF07EB322A3F66ED004D0163 /* libsexp.a */; };
+		EF07EB352A3F66ED004D0163 /* librnp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF07EB332A3F66ED004D0163 /* librnp.a */; };
+		EF07EB372A3F6705004D0163 /* libjson-c.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF07EB362A3F6705004D0163 /* libjson-c.a */; };
+		EF07EB382A3F6759004D0163 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF01A2B828B66ED2006E3CC3 /* libbz2.a */; };
+		EF07EB392A3F6768004D0163 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF01A2C128B765B0006E3CC3 /* libz.a */; };
+		EF07EB3B2A3F677B004D0163 /* libbotan-3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF07EB3A2A3F677B004D0163 /* libbotan-3.a */; };
 		EFBDF31728B56847005ECBF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF31628B56847005ECBF3 /* AppDelegate.swift */; };
 		EFBDF31928B56847005ECBF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF31828B56847005ECBF3 /* ViewController.swift */; };
 		EFBDF31B28B56848005ECBF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFBDF31A28B56848005ECBF3 /* Assets.xcassets */; };
@@ -50,9 +55,11 @@
 		EF01A2B828B66ED2006E3CC3 /* libbz2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libbz2.a; path = /usr/local/Cellar/bzip2/1.0.8/lib/libbz2.a; sourceTree = "<absolute>"; };
 		EF01A2BA28B66F15006E3CC3 /* libbotan-2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libbotan-2.a"; path = "/usr/local/Cellar/botan2/2.19.3/lib/libbotan-2.a"; sourceTree = "<absolute>"; };
 		EF01A2BC28B671AF006E3CC3 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "../../../../usr/lib/libstdc++.6.dylib"; sourceTree = "<group>"; };
-		EF01A2BE28B7627F006E3CC3 /* fii.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fii.cpp; sourceTree = "<group>"; };
-		EF01A2BF28B7627F006E3CC3 /* fii.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fii.hpp; sourceTree = "<group>"; };
 		EF01A2C128B765B0006E3CC3 /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = /usr/local/Cellar/zlib/1.2.13/lib/libz.a; sourceTree = "<absolute>"; };
+		EF07EB322A3F66ED004D0163 /* libsexp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsexp.a; path = "../../../../../usr/local/Cellar/modrnp/HEAD-d81a554/lib/libsexp.a"; sourceTree = "<group>"; };
+		EF07EB332A3F66ED004D0163 /* librnp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = librnp.a; path = "../../../../../usr/local/Cellar/modrnp/HEAD-d81a554/lib/librnp.a"; sourceTree = "<group>"; };
+		EF07EB362A3F6705004D0163 /* libjson-c.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libjson-c.a"; path = "../../../../../usr/local/Cellar/json-c/0.16/lib/libjson-c.a"; sourceTree = "<group>"; };
+		EF07EB3A2A3F677B004D0163 /* libbotan-3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libbotan-3.a"; path = "../../../../../usr/local/Cellar/botan/3.0.0/lib/libbotan-3.a"; sourceTree = "<group>"; };
 		EFBDF31328B56847005ECBF3 /* amgpg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = amgpg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFBDF31628B56847005ECBF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFBDF31828B56847005ECBF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +93,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF07EB3B2A3F677B004D0163 /* libbotan-3.a in Frameworks */,
+				EF07EB392A3F6768004D0163 /* libz.a in Frameworks */,
+				EF07EB382A3F6759004D0163 /* libbz2.a in Frameworks */,
+				EF07EB372A3F6705004D0163 /* libjson-c.a in Frameworks */,
+				EF07EB342A3F66ED004D0163 /* libsexp.a in Frameworks */,
+				EF07EB352A3F66ED004D0163 /* librnp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,8 +142,6 @@
 			children = (
 				EFBDF32B28B56926005ECBF3 /* MailExtension.swift */,
 				EFBDF32D28B56926005ECBF3 /* MessageSecurityHandler.swift */,
-				EF01A2BE28B7627F006E3CC3 /* fii.cpp */,
-				EF01A2BF28B7627F006E3CC3 /* fii.hpp */,
 				EFBDF32F28B56926005ECBF3 /* MessageSecurityViewController.swift */,
 				EFBDF33128B56926005ECBF3 /* MessageSecurityViewController.xib */,
 				EFBDF33328B56927005ECBF3 /* Info.plist */,
@@ -145,6 +156,10 @@
 		EFBDF34028B58B0B005ECBF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF07EB3A2A3F677B004D0163 /* libbotan-3.a */,
+				EF07EB362A3F6705004D0163 /* libjson-c.a */,
+				EF07EB332A3F66ED004D0163 /* librnp.a */,
+				EF07EB322A3F66ED004D0163 /* libsexp.a */,
 				EF01A2C128B765B0006E3CC3 /* libz.a */,
 				EF01A2BC28B671AF006E3CC3 /* libstdc++.6.dylib */,
 				EF01A2BA28B66F15006E3CC3 /* libbotan-2.a */,
@@ -268,7 +283,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF01A2C328B767E3006E3CC3 /* fii.cpp in Sources */,
 				EFBDF32E28B56926005ECBF3 /* MessageSecurityHandler.swift in Sources */,
 				EFBDF32C28B56926005ECBF3 /* MailExtension.swift in Sources */,
 				EFBDF33F28B584F6005ECBF3 /* foo.c in Sources */,
@@ -500,6 +514,9 @@
 					/usr/local/lib,
 					/usr/local/Cellar/bzip2/1.0.8/lib,
 					/usr/local/Cellar/zlib/1.2.13/lib,
+					"/usr/local/Cellar/modrnp/HEAD-d81a554/lib",
+					"/usr/local/Cellar/json-c/0.16/lib",
+					/usr/local/Cellar/botan/3.0.0/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
@@ -554,6 +571,9 @@
 					/usr/local/lib,
 					/usr/local/Cellar/bzip2/1.0.8/lib,
 					/usr/local/Cellar/zlib/1.2.13/lib,
+					"/usr/local/Cellar/modrnp/HEAD-d81a554/lib",
+					"/usr/local/Cellar/json-c/0.16/lib",
+					/usr/local/Cellar/botan/3.0.0/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
