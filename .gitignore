@@ -24,3 +24,8 @@ keyrings/
 
 # Ignore executable files
 *.ex
+
+# Ignore sample messages and such
+*.enc
+*.dec
+*.sig
