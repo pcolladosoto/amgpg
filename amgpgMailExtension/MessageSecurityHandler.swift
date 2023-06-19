@@ -3,19 +3,28 @@ import OSLog
 
 class MessageSecurityHandler: NSObject, MEMessageSecurityHandler {
     static let shared = MessageSecurityHandler()
-    
-    let defaultLog = Logger(subsystem: "fooLog", category: "mail")
-    
+
+    let defaultLog = Logger(subsystem: "amgpg-main", category: "mail")
+
     enum MessageSecurityError: Error {
-        case unverifiedEmails(emailAdresses: [MEEmailAddress])
+        case unverifiedEmails(addresses: [MEEmailAddress])
+        case invalidEmails(addresses: [MEEmailAddress])
+        case noAddress
         case noEncodableData
+        case encodingError
         case draft
         var errorReason: String {
             switch self {
-            case .unverifiedEmails(let emailAdresses):
-                return "Invalid email addresses detected.\n\(emailAdresses)"
+            case .unverifiedEmails(let addresses):
+                return "Invalid email addresses detected: \(addresses)"
+            case .invalidEmails(let addresses):
+                return "Invalid email addresses detected: \(addresses)"
+            case .noAddress:
+                return "No recipient provided."
             case .noEncodableData:
                 return "No encodable data found."
+            case .encodingError:
+                return "We couldn't really encrypt the thing..."
             case .draft:
                 return "We aren't encrypt drafts at the moment..."
             }
@@ -24,124 +33,123 @@ class MessageSecurityHandler: NSObject, MEMessageSecurityHandler {
 
     // MARK: - Encoding Messages
     func encodingStatus(for message: MEMessage, composeContext: MEComposeContext) async -> MEOutgoingMessageEncodingStatus {
-        // Indicate whether you support signing, encrypting, or both. If the
-        // message contains recipients that you can't sign or encrypt for,
-        // specify an error and include the addresses in the
-        // addressesFailingEncryption array parameter. Update this code with
-        // the options your extension supports.
+        var failingAddresses: [MEEmailAddress] = []
+
+        var canSign = false;
+        if let from = message.fromAddress.addressString {
+            canSign = amgpg_key_is(PUBRING, SECRING, from, true) == RNP_SUCCESS
+        }
         
+        if (!canSign) {
+            failingAddresses.append(message.fromAddress)
+        }
+
+        var canEncrypt = false;
+        if let toAddr = message.toAddresses.first {
+            if let to = toAddr.addressString {
+                canEncrypt = amgpg_key_is(PUBRING, SECRING, to, false) == RNP_SUCCESS
+            }
+
+            if (!canEncrypt) {
+                failingAddresses.append(toAddr)
+            }
+        }
+        
+        defaultLog.debug(
+            "decided we can: encrypt? \(canEncrypt); sign? \(canSign); offending: \(failingAddresses)"
+        )
+
         return MEOutgoingMessageEncodingStatus(
-            canSign: true,
-            canEncrypt: true,
-            securityError: nil,
-            addressesFailingEncryption: []
-            // addressesFailingEncryption: message.allRecipientAddresses
+            canSign: canSign,
+            canEncrypt: canEncrypt,
+            securityError: !canSign || !canEncrypt ?
+                MessageSecurityError.unverifiedEmails(addresses: failingAddresses) : nil,
+            addressesFailingEncryption: failingAddresses
         )
     }
 
     func encode(_ message: MEMessage, composeContext: MEComposeContext) async -> MEMessageEncodingResult {
-        defaultLog.debug("Current message state -> \(message.state.rawValue)")
-        
-        guard let msgHeaders = message.headers, var msgBody = message.rawData else {
+        guard let msgHeaders = message.headers, let msgRFC = message.rawData else {
             defaultLog.error("Didn't find any message headers... That sounds fishy!")
             return MEMessageEncodingResult(
                 encodedMessage: nil,
-                signingError: nil,
-                encryptionError: MessageSecurityHandler.MessageSecurityError.noEncodableData
+                signingError: MessageSecurityError.noEncodableData,
+                encryptionError: MessageSecurityError.noEncodableData
             )
         }
-
-        // defaultLog.debug("Printing out the message's headers...")
-        // for (header, value) in msgHeaders {
-        //    defaultLog.debug("\(header) -> \(value)")
-        // }
-        
-        defaultLog.debug("Raw Base64-encoded message -> \(msgBody.base64EncodedString())")
 
         if message.state == MEMessageState.draft || msgHeaders["x-uniform-type-identifier"] != nil {
             defaultLog.debug(
-                "Skipping actions on the draft: 'x-uniform-type-identifier' -> \(msgHeaders["x-uniform-type-identifier"]!)"
+                "We're drafting: \(msgHeaders["x-uniform-type-identifier"]!), \(message.state.rawValue)"
             )
             return MEMessageEncodingResult(
-                encodedMessage: MEEncodedOutgoingMessage(
-                    rawData: msgBody,
-                    isSigned: false,
-                    isEncrypted: false),
-                signingError: nil,
-                encryptionError: nil
+                encodedMessage: nil,
+                signingError: MessageSecurityError.draft,
+                encryptionError: MessageSecurityError.draft
             )
         }
 
-        // Triggering RNP...
-        // triggerRNP();
-
-        defaultLog.debug("Getting ready to send a message...")
-        defaultLog.debug("Should we encrypt? \(composeContext.shouldEncrypt)")
         defaultLog.debug("Should we sign? \(composeContext.shouldSign)")
-
-        // The result of the encoding operation. This object contains
-        // the encoded message or an error to indicate what failed.
-        // let result: MEMessageEncodingResult
         
-        // Add code here to sign and/or encrypt the message.
-        //
-        // If the encoding is successful, you create an instance
-        // of MEEncodedOutgoingMessage that contains the encoded data and
-        // indications whether the data is signed and/or encrypted.
-        // For example:
-        //
-        // encodedMessage = MEEncodedOutgoingMessage(rawData:encodedData, isSigned:true, isEncrypted:true)
-        //
-        // Finally, create an MEMessageEncodingResult that includes the
-        // MEEncodedOutgoingMessage or errors to indicate why the encoding
-        // failed. If the message doesn't need to be encoded, pass nil,
-        // otherwise pass an MEEncodedOutgoingMessage as shown above.
-        // result = MEMessageEncodingResult(
-        //    encodedMessage: nil, signingError: nil, encryptionError: nil
-        // )
-
-        guard let additionalBody = "We have modified the message :P".data(using: .ascii) else {
-            defaultLog.error("Couldn't populate the addiotnal message body......")
-            return  MEMessageEncodingResult(
-                encodedMessage: MEEncodedOutgoingMessage(
-                    rawData: msgBody,
-                    isSigned: composeContext.isSigned,
-                    isEncrypted: composeContext.isEncrypted),
-                signingError: nil,
-                encryptionError: nil)
+        var processedMessage : Data? = nil
+        if composeContext.shouldEncrypt {
+            guard let toAddr = message.toAddresses.first else {
+                defaultLog.error("no TO addresses provided...")
+                return  MEMessageEncodingResult(
+                    encodedMessage: nil,
+                    signingError: MessageSecurityError.noAddress,
+                    encryptionError: MessageSecurityError.noAddress
+                )
+            }
+            
+            guard let addr = toAddr.addressString else {
+                defaultLog.error("no valid address within \(toAddr)")
+                return  MEMessageEncodingResult(
+                    encodedMessage: nil,
+                    signingError: MessageSecurityError.invalidEmails(addresses: [toAddr]),
+                    encryptionError: MessageSecurityError.invalidEmails(addresses: [toAddr])
+                )
+            }
+            
+            processedMessage = CryptoOps.sharedInstance.encodeMessage(msgRFC: msgRFC, to: addr)
         }
 
-        defaultLog.debug("Appending a goodie to the message: \(additionalBody.base64EncodedString())")
-        msgBody.append(additionalBody)
+        guard let finalMsg = processedMessage else {
+            return  MEMessageEncodingResult(
+                encodedMessage: nil,
+                signingError: MessageSecurityError.encodingError,
+                encryptionError: MessageSecurityError.encodingError
+            )
+        }
 
         return MEMessageEncodingResult(
             encodedMessage: MEEncodedOutgoingMessage(
-                rawData: msgBody,
-                isSigned: composeContext.isSigned,
-                isEncrypted: composeContext.isEncrypted),
+                rawData: finalMsg,
+                isSigned: false,
+                isEncrypted: composeContext.shouldEncrypt
+            ),
             signingError: nil,
-            encryptionError: nil)
+            encryptionError: nil
+        )
     }
 
     // MARK: - Decoding Messages
-
     func decodedMessage(forMessageData data: Data) -> MEDecodedMessage? {
-        // In this method, you decode the message data. Create an
-        // MEMessageSecurityInformation object to capture details about the decoded
-        // message. If an error occurs, create an NSError that describes the
-        // failure, and specify it in the security information object. For example:
-        //
-        // let securityInfo = MEMessageSecurityInformation(signers: [], isEncrypted: false, signingError: nil, encryptionError: nil)
-        //
-        // Create a decoded message object that contains the decoded data and the
-        // security information. For example:
-        //
-        // let decodedData = ... 
-        // let decodedMessage = MEDecodedMessage(data: decodedData, securityInformation: securityInfo, context: nil)
+        // defaultLog.debug("time to decode -> \(data.base64EncodedString())")
+        guard let decodedMessage = CryptoOps.sharedInstance.decodeMessage(msgRFC: data) else {
+            return nil
+        }
         
-        // If the message doesn't need to be decoded, return nil.
-        // Otherwise return an MEDecodedMessage, as shown above. 
-        return nil;
+        return MEDecodedMessage(
+            data: decodedMessage,
+            securityInformation: MEMessageSecurityInformation(
+                signers: [],
+                isEncrypted: true,
+                signingError: nil,
+                encryptionError: nil
+            ),
+            context: nil
+        )
     }
 
     // MARK: - Displaying Security Information

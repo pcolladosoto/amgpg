@@ -13,6 +13,12 @@
 		EF07EB382A3F6759004D0163 /* libbz2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF01A2B828B66ED2006E3CC3 /* libbz2.a */; };
 		EF07EB392A3F6768004D0163 /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF01A2C128B765B0006E3CC3 /* libz.a */; };
 		EF07EB3B2A3F677B004D0163 /* libbotan-3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF07EB3A2A3F677B004D0163 /* libbotan-3.a */; };
+		EF07EB3E2A3F6BE4004D0163 /* keymgmt.c in Sources */ = {isa = PBXBuildFile; fileRef = EF07EB3D2A3F6BE4004D0163 /* keymgmt.c */; };
+		EF07EB402A3F6C1A004D0163 /* encrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = EF07EB3F2A3F6C1A004D0163 /* encrypt.c */; };
+		EF07EB422A3F6C4A004D0163 /* decrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = EF07EB412A3F6C4A004D0163 /* decrypt.c */; };
+		EF07EB442A3F6C5C004D0163 /* sign.c in Sources */ = {isa = PBXBuildFile; fileRef = EF07EB432A3F6C5C004D0163 /* sign.c */; };
+		EF07EB462A3F6C78004D0163 /* verify.c in Sources */ = {isa = PBXBuildFile; fileRef = EF07EB452A3F6C78004D0163 /* verify.c */; };
+		EF07EB482A3FA03D004D0163 /* cryptoOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF07EB472A3FA03D004D0163 /* cryptoOps.swift */; };
 		EFBDF31728B56847005ECBF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF31628B56847005ECBF3 /* AppDelegate.swift */; };
 		EFBDF31928B56847005ECBF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF31828B56847005ECBF3 /* ViewController.swift */; };
 		EFBDF31B28B56848005ECBF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFBDF31A28B56848005ECBF3 /* Assets.xcassets */; };
@@ -22,7 +28,7 @@
 		EFBDF33028B56926005ECBF3 /* MessageSecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF32F28B56926005ECBF3 /* MessageSecurityViewController.swift */; };
 		EFBDF33228B56926005ECBF3 /* MessageSecurityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFBDF33128B56926005ECBF3 /* MessageSecurityViewController.xib */; };
 		EFBDF33728B56927005ECBF3 /* amgpgMailExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = EFBDF32928B56926005ECBF3 /* amgpgMailExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		EFBDF33F28B584F6005ECBF3 /* foo.c in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF33E28B584F6005ECBF3 /* foo.c */; };
+		EFBDF33F28B584F6005ECBF3 /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF33E28B584F6005ECBF3 /* misc.c */; };
 		EFFFB2772A31201C006C8237 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EFFFB2762A31201C006C8237 /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +67,12 @@
 		EF07EB362A3F6705004D0163 /* libjson-c.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libjson-c.a"; path = "../../../../../usr/local/Cellar/json-c/0.16/lib/libjson-c.a"; sourceTree = "<group>"; };
 		EF07EB3A2A3F677B004D0163 /* libbotan-3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libbotan-3.a"; path = "../../../../../usr/local/Cellar/botan/3.0.0/lib/libbotan-3.a"; sourceTree = "<group>"; };
 		EF07EB3C2A3F6837004D0163 /* bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
+		EF07EB3D2A3F6BE4004D0163 /* keymgmt.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = keymgmt.c; sourceTree = "<group>"; };
+		EF07EB3F2A3F6C1A004D0163 /* encrypt.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = encrypt.c; sourceTree = "<group>"; };
+		EF07EB412A3F6C4A004D0163 /* decrypt.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = decrypt.c; sourceTree = "<group>"; };
+		EF07EB432A3F6C5C004D0163 /* sign.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sign.c; sourceTree = "<group>"; };
+		EF07EB452A3F6C78004D0163 /* verify.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = verify.c; sourceTree = "<group>"; };
+		EF07EB472A3FA03D004D0163 /* cryptoOps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cryptoOps.swift; sourceTree = "<group>"; };
 		EFBDF31328B56847005ECBF3 /* amgpg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = amgpg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFBDF31628B56847005ECBF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFBDF31828B56847005ECBF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,8 +86,8 @@
 		EFBDF33128B56926005ECBF3 /* MessageSecurityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageSecurityViewController.xib; sourceTree = "<group>"; };
 		EFBDF33328B56927005ECBF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFBDF33428B56927005ECBF3 /* amgpgMailExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = amgpgMailExtension.entitlements; sourceTree = "<group>"; };
-		EFBDF33D28B584F6005ECBF3 /* foo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = foo.h; sourceTree = "<group>"; };
-		EFBDF33E28B584F6005ECBF3 /* foo.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = foo.c; sourceTree = "<group>"; };
+		EFBDF33D28B584F6005ECBF3 /* amgpg_rnp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = amgpg_rnp.h; sourceTree = "<group>"; };
+		EFBDF33E28B584F6005ECBF3 /* misc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = misc.c; sourceTree = "<group>"; };
 		EFBDF34328B58B1E005ECBF3 /* libassuan.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libassuan.a; path = ../../../../../usr/local/Cellar/libassuan/2.5.5/lib/libassuan.a; sourceTree = "<group>"; };
 		EFBDF34528B58B2C005ECBF3 /* libgpg-error.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgpg-error.a"; path = "../../../../../usr/local/Cellar/libgpg-error/1.47/lib/libgpg-error.a"; sourceTree = "<group>"; };
 		EFFFB2762A31201C006C8237 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -143,11 +155,17 @@
 				EFBDF32B28B56926005ECBF3 /* MailExtension.swift */,
 				EFBDF32D28B56926005ECBF3 /* MessageSecurityHandler.swift */,
 				EFBDF32F28B56926005ECBF3 /* MessageSecurityViewController.swift */,
+				EF07EB472A3FA03D004D0163 /* cryptoOps.swift */,
 				EFBDF33128B56926005ECBF3 /* MessageSecurityViewController.xib */,
 				EFBDF33328B56927005ECBF3 /* Info.plist */,
 				EFBDF33428B56927005ECBF3 /* amgpgMailExtension.entitlements */,
-				EFBDF33D28B584F6005ECBF3 /* foo.h */,
-				EFBDF33E28B584F6005ECBF3 /* foo.c */,
+				EFBDF33D28B584F6005ECBF3 /* amgpg_rnp.h */,
+				EF07EB3D2A3F6BE4004D0163 /* keymgmt.c */,
+				EF07EB3F2A3F6C1A004D0163 /* encrypt.c */,
+				EF07EB412A3F6C4A004D0163 /* decrypt.c */,
+				EF07EB432A3F6C5C004D0163 /* sign.c */,
+				EF07EB452A3F6C78004D0163 /* verify.c */,
+				EFBDF33E28B584F6005ECBF3 /* misc.c */,
 				EF07EB3C2A3F6837004D0163 /* bridge.h */,
 			);
 			path = amgpgMailExtension;
@@ -283,10 +301,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF07EB442A3F6C5C004D0163 /* sign.c in Sources */,
+				EF07EB462A3F6C78004D0163 /* verify.c in Sources */,
+				EF07EB422A3F6C4A004D0163 /* decrypt.c in Sources */,
 				EFBDF32E28B56926005ECBF3 /* MessageSecurityHandler.swift in Sources */,
 				EFBDF32C28B56926005ECBF3 /* MailExtension.swift in Sources */,
-				EFBDF33F28B584F6005ECBF3 /* foo.c in Sources */,
+				EF07EB482A3FA03D004D0163 /* cryptoOps.swift in Sources */,
+				EFBDF33F28B584F6005ECBF3 /* misc.c in Sources */,
+				EF07EB3E2A3F6BE4004D0163 /* keymgmt.c in Sources */,
 				EFBDF33028B56926005ECBF3 /* MessageSecurityViewController.swift in Sources */,
+				EF07EB402A3F6C1A004D0163 /* encrypt.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
