@@ -19,6 +19,7 @@
 		EF07EB442A3F6C5C004D0163 /* sign.c in Sources */ = {isa = PBXBuildFile; fileRef = EF07EB432A3F6C5C004D0163 /* sign.c */; };
 		EF07EB462A3F6C78004D0163 /* verify.c in Sources */ = {isa = PBXBuildFile; fileRef = EF07EB452A3F6C78004D0163 /* verify.c */; };
 		EF07EB482A3FA03D004D0163 /* cryptoOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF07EB472A3FA03D004D0163 /* cryptoOps.swift */; };
+		EF07EB4C2A40CE67004D0163 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF07EB4B2A40CE67004D0163 /* libc++.tbd */; };
 		EFBDF31728B56847005ECBF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF31628B56847005ECBF3 /* AppDelegate.swift */; };
 		EFBDF31928B56847005ECBF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBDF31828B56847005ECBF3 /* ViewController.swift */; };
 		EFBDF31B28B56848005ECBF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFBDF31A28B56848005ECBF3 /* Assets.xcassets */; };
@@ -73,6 +74,8 @@
 		EF07EB432A3F6C5C004D0163 /* sign.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sign.c; sourceTree = "<group>"; };
 		EF07EB452A3F6C78004D0163 /* verify.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = verify.c; sourceTree = "<group>"; };
 		EF07EB472A3FA03D004D0163 /* cryptoOps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cryptoOps.swift; sourceTree = "<group>"; };
+		EF07EB492A40CDC5004D0163 /* libkmodc++.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libkmodc++.a"; path = "usr/lib/libkmodc++.a"; sourceTree = SDKROOT; };
+		EF07EB4B2A40CE67004D0163 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		EFBDF31328B56847005ECBF3 /* amgpg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = amgpg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFBDF31628B56847005ECBF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFBDF31828B56847005ECBF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF07EB4C2A40CE67004D0163 /* libc++.tbd in Frameworks */,
 				EF07EB3B2A3F677B004D0163 /* libbotan-3.a in Frameworks */,
 				EF07EB392A3F6768004D0163 /* libz.a in Frameworks */,
 				EF07EB382A3F6759004D0163 /* libbz2.a in Frameworks */,
@@ -174,6 +178,8 @@
 		EFBDF34028B58B0B005ECBF3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF07EB4B2A40CE67004D0163 /* libc++.tbd */,
+				EF07EB492A40CDC5004D0163 /* libkmodc++.a */,
 				EF07EB3A2A3F677B004D0163 /* libbotan-3.a */,
 				EF07EB362A3F6705004D0163 /* libjson-c.a */,
 				EF07EB332A3F66ED004D0163 /* librnp.a */,
@@ -340,6 +346,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -386,7 +393,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -400,6 +407,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -440,7 +448,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -465,6 +473,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				IPHONEOS_DEPLOYMENT_TARGET = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -474,6 +483,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = "";
+				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Debug;
 		};
@@ -493,6 +504,7 @@
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				IPHONEOS_DEPLOYMENT_TARGET = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -502,6 +514,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = "";
+				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Release;
 		};
@@ -528,6 +542,7 @@
 				INFOPLIST_FILE = amgpgMailExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = amgpgMailExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -542,7 +557,7 @@
 					"/usr/local/Cellar/json-c/0.16/lib",
 					/usr/local/Cellar/botan/3.0.0/lib,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					/usr/local/lib/librnp.a,
@@ -560,6 +575,8 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = "";
+				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Debug;
 		};
@@ -586,6 +603,7 @@
 				INFOPLIST_FILE = amgpgMailExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = amgpgMailExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -600,7 +618,7 @@
 					"/usr/local/Cellar/json-c/0.16/lib",
 					/usr/local/Cellar/botan/3.0.0/lib,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					/usr/local/lib/librnp.a,
@@ -617,6 +635,8 @@
 				SWIFT_OBJC_BRIDGING_HEADER = amgpgMailExtension/bridge.h;
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
+				TVOS_DEPLOYMENT_TARGET = "";
+				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Release;
 		};

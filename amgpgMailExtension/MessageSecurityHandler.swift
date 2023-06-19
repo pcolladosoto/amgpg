@@ -35,35 +35,30 @@ class MessageSecurityHandler: NSObject, MEMessageSecurityHandler {
     func encodingStatus(for message: MEMessage, composeContext: MEComposeContext) async -> MEOutgoingMessageEncodingStatus {
         var failingAddresses: [MEEmailAddress] = []
 
-        var canSign = false;
+        var signOk = false;
         if let from = message.fromAddress.addressString {
-            canSign = amgpg_key_is(PUBRING, SECRING, from, true) == RNP_SUCCESS
-        }
-        
-        if (!canSign) {
-            failingAddresses.append(message.fromAddress)
+            signOk = amgpg_key_is(PUBRING, SECRING, from, true) == RNP_SUCCESS
         }
 
-        var canEncrypt = false;
+        var encryptOk = false;
         if let toAddr = message.toAddresses.first {
             if let to = toAddr.addressString {
-                canEncrypt = amgpg_key_is(PUBRING, SECRING, to, false) == RNP_SUCCESS
+                encryptOk = amgpg_key_is(PUBRING, SECRING, to, false) == RNP_SUCCESS
             }
 
-            if (!canEncrypt) {
+            if (!encryptOk) {
                 failingAddresses.append(toAddr)
             }
         }
-        
+
         defaultLog.debug(
-            "decided we can: encrypt? \(canEncrypt); sign? \(canSign); offending: \(failingAddresses)"
+            "decided we can: encrypt? \(encryptOk); sign? \(signOk)"
         )
 
         return MEOutgoingMessageEncodingStatus(
-            canSign: canSign,
-            canEncrypt: canEncrypt,
-            securityError: !canSign || !canEncrypt ?
-                MessageSecurityError.unverifiedEmails(addresses: failingAddresses) : nil,
+            canSign: signOk,
+            canEncrypt: encryptOk,
+            securityError: nil,
             addressesFailingEncryption: failingAddresses
         )
     }
@@ -83,9 +78,13 @@ class MessageSecurityHandler: NSObject, MEMessageSecurityHandler {
                 "We're drafting: \(msgHeaders["x-uniform-type-identifier"]!), \(message.state.rawValue)"
             )
             return MEMessageEncodingResult(
-                encodedMessage: nil,
-                signingError: MessageSecurityError.draft,
-                encryptionError: MessageSecurityError.draft
+                encodedMessage: MEEncodedOutgoingMessage(
+                    rawData: msgRFC,
+                    isSigned: false,
+                    isEncrypted: false
+                ),
+                signingError: nil,
+                encryptionError: nil
             )
         }
 
@@ -94,16 +93,16 @@ class MessageSecurityHandler: NSObject, MEMessageSecurityHandler {
         var processedMessage : Data? = nil
         if composeContext.shouldEncrypt {
             guard let toAddr = message.toAddresses.first else {
-                defaultLog.error("no TO addresses provided...")
+                defaultLog.debug("no TO addresses provided...")
                 return  MEMessageEncodingResult(
                     encodedMessage: nil,
                     signingError: MessageSecurityError.noAddress,
                     encryptionError: MessageSecurityError.noAddress
                 )
             }
-            
+
             guard let addr = toAddr.addressString else {
-                defaultLog.error("no valid address within \(toAddr)")
+                defaultLog.debug("no valid address within \(toAddr)")
                 return  MEMessageEncodingResult(
                     encodedMessage: nil,
                     signingError: MessageSecurityError.invalidEmails(addresses: [toAddr]),

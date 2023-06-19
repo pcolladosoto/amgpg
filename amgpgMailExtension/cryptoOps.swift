@@ -23,8 +23,8 @@ class CryptoOps {
             }
         }
         
-        defaultLog.debug("Hdrs (base64) -> \(msgHdrsRaw.base64EncodedString())")
-        defaultLog.debug("Body (base64) -> \(msgBodyRaw.base64EncodedString())")
+        // defaultLog.debug("Hdrs (base64) -> \(msgHdrsRaw.base64EncodedString())")
+        // defaultLog.debug("Body (base64) -> \(msgBodyRaw.base64EncodedString())")
         
         return (msgHdrsRaw, msgBodyRaw)
     }
@@ -35,7 +35,7 @@ class CryptoOps {
         let bodyPtr = UnsafeMutablePointer<UInt8>.allocate(capacity: body.count)
         body.copyBytes(to: bodyPtr, count: body.count)
         
-        defaultLog.debug("encrypting message for: \(to)")
+        // defaultLog.debug("encrypting message for: \(to)")
         
         let encMessage = amgpg_encrypt(
             msg_t(msg: bodyPtr, len: body.count, ret: 0), PUBRING, SECRING, to
@@ -48,7 +48,7 @@ class CryptoOps {
 
         hdrs.append(Data(bytes: encMessage.msg, count: encMessage.len))
 
-        defaultLog.debug("encoded (base64) -> \(hdrs.base64EncodedString())")
+        // defaultLog.debug("encoded (base64) -> \(hdrs.base64EncodedString())")
 
         rnp_buffer_destroy(encMessage.msg)
 
@@ -64,13 +64,13 @@ class CryptoOps {
         let decMessage = amgpg_decrypt(msg_t(msg: bodyPtr, len: body.count, ret: 0), PUBRING, SECRING)
         
         if decMessage.ret != RNP_SUCCESS {
-            defaultLog.debug("couldn't dencrypt the message: \(String(format:"%02x", decMessage.ret))")
+            // defaultLog.debug("couldn't decrypt the message: \(String(format:"%02x", decMessage.ret))")
             return nil
         }
 
         hdrs.append(Data(bytes: decMessage.msg, count: decMessage.len))
 
-        defaultLog.debug("decoded (base64) -> \(hdrs.base64EncodedString())")
+        // defaultLog.debug("decoded (base64) -> \(hdrs.base64EncodedString())")
 
         rnp_buffer_destroy(decMessage.msg)
 

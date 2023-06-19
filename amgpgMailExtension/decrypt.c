@@ -16,17 +16,17 @@ msg_t amgpg_decrypt(msg_t enc_msg, const char* pubring, const char* secring) {
         goto finish;
 
     if ((ret = rnp_input_from_memory(&input, enc_msg.msg, enc_msg.len, true)) != RNP_SUCCESS) {
-        fprintf(stdout, "failed to create input object\n");
+        // fprintf(stdout, "failed to create input object\n");
         goto finish;
     }
 
     if ((ret = rnp_output_to_memory(&output, 0)) != RNP_SUCCESS) {
-        fprintf(stdout, "failed to create output object\n");
+        // fprintf(stdout, "failed to create output object\n");
         goto finish;
     }
 
     if ((ret = rnp_decrypt(ffi, input, output)) != RNP_SUCCESS) {
-        fprintf(stdout, "public-key decryption failed\n");
+        // fprintf(stdout, "public-key decryption failed\n");
         goto finish;
     }
 
