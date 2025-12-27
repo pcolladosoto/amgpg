@@ -35,7 +35,7 @@ msg_t amgpg_sign(msg_t message, const char* pubring, const char* secring, const 
     /* initialize and configure sign operation, use
      * rnp_op_sign_create_cleartext/rnp_op_sign_create_detached for cleartext or detached
      * signature. */
-    if ((ret = rnp_op_sign_create(&sign, ffi, input, output)) != RNP_SUCCESS) {
+    if ((ret = rnp_op_sign_cleartext_create(&sign, ffi, input, output)) != RNP_SUCCESS) {
         fprintf(stdout, "failed to create sign operation\n");
         goto finish;
     }

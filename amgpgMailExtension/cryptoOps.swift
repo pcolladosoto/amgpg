@@ -7,10 +7,6 @@ class CryptoOps {
     
     let defaultLog = Logger(subsystem: "amgpg-crypto", category: "mail")
     
-    private func shouldEncode(_ message: MEMessage) -> Bool {
-        true
-    }
-    
     private func splitRFC2822(msgRFC: Data) -> (Data, Data) {
         var msgHdrsRaw = Data()
         var msgBodyRaw = Data()
@@ -75,33 +71,5 @@ class CryptoOps {
         rnp_buffer_destroy(decMessage.msg)
 
         return hdrs
-    }
-    
-    func securityStatus(for message: MEMessage) -> MEOutgoingMessageEncodingStatus {
-        MEOutgoingMessageEncodingStatus(
-            canSign: true,
-            canEncrypt: true,
-            securityError: nil,
-            addressesFailingEncryption: [])
-    }
-}
-
-class ExampleDecoder {
-    static let sharedInstance = ExampleDecoder()
-    
-    func shouldDecodeMessage(withData: Data) -> Bool {
-        true
-    }
-    
-    func decodedMessage(from data: Data) -> MEDecodedMessage {
-        MEDecodedMessage(
-            data: data,
-            securityInformation: MEMessageSecurityInformation(
-                signers: [],
-                isEncrypted: true,
-                signingError: nil,
-                encryptionError: nil),
-            context: nil,
-            banner: nil)
     }
 }

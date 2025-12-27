@@ -38,7 +38,7 @@ msg_t amgpg_encrypt(msg_t dec_message, const char* pubring, const char* secring,
     // Setup encryption parameters.
     rnp_op_encrypt_set_armor(encrypt, true);
     rnp_op_encrypt_set_file_name(encrypt, "message.enc");
-    rnp_op_encrypt_set_file_mtime(encrypt, time(NULL));
+    rnp_op_encrypt_set_file_mtime(encrypt, (uint32_t) time(NULL));
     rnp_op_encrypt_set_compression(encrypt, "ZIP", 6);
     rnp_op_encrypt_set_cipher(encrypt, RNP_ALGNAME_AES_256);
     rnp_op_encrypt_set_aead(encrypt, "None");
